@@ -20,8 +20,8 @@
 /* Layout: one 880px column. A navy header band with a faint mesh grid holds the intro;
    the blade cross-section sits on a white plate that overlaps the band's lower edge. Below
    it, plain sections divided by hairlines, a gold bar marking each section start, and a
-   navy footer bar. Three figures: the cross-section, the full-blade deflection and the
-   TPMS lattice plate. */
+   navy footer bar with the portrait. Figures: blade cross-section, full-blade deflection,
+   buckling shape, and the TPMS plate beside its vibration shapes. */
 :root{
   --page:#f3f5f8;
   --ink:#16202c;
@@ -120,6 +120,8 @@ h3{font-weight:600;font-size:1.2rem;line-height:1.3}
 .item p{margin-top:10px;max-width:68ch}
 .item figure{margin-top:22px}
 .item figure.narrow{max-width:620px}
+.figrow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:22px;align-items:start}
+.figrow figure{margin-top:0;min-width:0}
 
 .lede{max-width:66ch;margin-top:20px}
 .facts{margin-top:24px;font-family:var(--sans);font-size:.98rem;color:var(--muted);max-width:70ch}
@@ -135,10 +137,16 @@ h3{font-weight:600;font-size:1.2rem;line-height:1.3}
 .pubs .by b{color:var(--ink);font-weight:600}
 
 .foot{background:var(--band);color:var(--band-muted);font-family:var(--sans);font-size:.92rem}
-.foot .wrap{padding-block:22px}
+.foot-in{display:flex;align-items:center;gap:18px;padding-block:30px}
+.me{width:96px;height:96px;border-radius:50%;object-fit:cover;border:2px solid var(--band-line);flex:none}
+.sig{font-weight:600;font-size:1.05rem;color:var(--band-ink)}
+.upd{margin-top:2px}
 
 @media (max-width:760px){
   body{font-size:1.0625rem}
+}
+@media (max-width:640px){
+  .figrow{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:420px){
   .pubs li{grid-template-columns:minmax(0,1fr)}
@@ -188,15 +196,25 @@ h3{font-weight:600;font-size:1.2rem;line-height:1.3}
       <article class="item">
         <h3>Buckling of thin blade skins</h3>
         <p>A blade's thin skin can suddenly fold under load, which is called buckling. I reuse the stresses from the beam model to check every segment of the blade, so a full blade is checked in 1.25 hours without modeling all of it in 3&#8209;D. The results stay within 5% of analytical solutions and of Sandia's Sierra code.</p>
+        <figure class="narrow">
+          <div class="plate"><img src="images/blade-buckling.jpg" width="1200" height="902" loading="lazy" alt="A purple blade segment with two internal webs; bright yellow and green bumps on its upper skin show where it buckles."></div>
+          <figcaption>Buckling shape of a blade segment. The bright bumps are where the skin folds first.</figcaption>
+        </figure>
       </article>
 
       <article class="item">
         <h3>Lightweight lattice panels</h3>
         <p>Panels with lattice cores are light and stiff, but too detailed to simulate cell by cell over a whole panel. I derived a plate model that replaces the detailed 3&#8209;D simulation at 25 to 320 times lower cost, while matching its stresses and vibration frequencies within about 6%.</p>
-        <figure class="narrow">
-          <div class="plate"><img src="images/tpms-plate.jpg" width="1400" height="930" loading="lazy" alt="Gray 3-D view of a square plate made of five-by-five rounded, repeating lattice cells with holes."></div>
-          <figcaption>A lattice plate built from a smooth, repeating cell shape called a TPMS (triply periodic minimal surface).</figcaption>
-        </figure>
+        <div class="figrow">
+          <figure>
+            <div class="plate"><img src="images/tpms-plate.jpg" width="1400" height="930" loading="lazy" alt="Gray 3-D view of a square plate made of five-by-five rounded, repeating lattice cells with holes."></div>
+            <figcaption>A lattice plate built from a smooth, repeating cell shape called a TPMS (triply periodic minimal surface).</figcaption>
+          </figure>
+          <figure>
+            <div class="plate"><img src="images/lattice-plate-modes.jpg" width="989" height="677" loading="lazy" alt="Two rows of four colored vibration shapes: the top row from the detailed 3-D model of the lattice plate, the bottom row the same four shapes from the plate model."></div>
+            <figcaption>Its first four vibration shapes: detailed 3&#8209;D simulation (top) and my plate model (bottom).</figcaption>
+          </figure>
+        </div>
       </article>
     </section>
 
@@ -207,7 +225,8 @@ h3{font-weight:600;font-size:1.2rem;line-height:1.3}
       <p class="more">
         <a href="https://github.com/wenbinyugroup/OpenSG">Source code</a>
         <a href="https://wenbinyugroup.github.io/OpenSG/">Documentation</a>
-        <a href="https://github.com/wenbinyugroup/OpenSG/releases/tag/v2.0.0">Version 2.0 release</a>
+        <a href="https://github.com/wenbinyugroup/OpenSG/releases/tag/v1.0.0">Version 1.0 release (FEniCSx)</a>
+        <a href="https://github.com/wenbinyugroup/OpenSG/releases/tag/v2.0.0">Version 2.0 release (JAX)</a>
       </p>
     </section>
 
@@ -276,7 +295,13 @@ h3{font-weight:600;font-size:1.2rem;line-height:1.3}
 </main>
 
 <footer class="foot">
-  <div class="wrap">Updated October 2026</div>
+  <div class="wrap foot-in">
+    <img class="me" src="images/akshat-bagla.jpg" width="360" height="360" loading="lazy" alt="Portrait of Akshat Bagla">
+    <div>
+      <p class="sig">Akshat Bagla</p>
+      <p class="upd">Updated October 2026</p>
+    </div>
+  </div>
 </footer>
 </body>
 </html>
