@@ -20,7 +20,8 @@
 /* Layout: one 880px column. A navy header band with a faint mesh grid holds the intro;
    the blade cross-section sits on a white plate that overlaps the band's lower edge. Below
    it, plain sections divided by hairlines, a gold bar marking each section start, and a
-   navy footer bar. Only two figures: the cross-section and the full-blade deflection. */
+   navy footer bar. Three figures: the cross-section, the full-blade deflection and the
+   TPMS lattice plate. */
 :root{
   --page:#f3f5f8;
   --ink:#16202c;
@@ -118,6 +119,7 @@ h3{font-weight:600;font-size:1.2rem;line-height:1.3}
 .item:last-child{border-bottom:0;padding-bottom:0}
 .item p{margin-top:10px;max-width:68ch}
 .item figure{margin-top:22px}
+.item figure.narrow{max-width:620px}
 
 .lede{max-width:66ch;margin-top:20px}
 .facts{margin-top:24px;font-family:var(--sans);font-size:.98rem;color:var(--muted);max-width:70ch}
@@ -191,6 +193,10 @@ h3{font-weight:600;font-size:1.2rem;line-height:1.3}
       <article class="item">
         <h3>Lightweight lattice panels</h3>
         <p>Panels with lattice cores are light and stiff, but too detailed to simulate cell by cell over a whole panel. I derived a plate model that replaces the detailed 3&#8209;D simulation at 25 to 320 times lower cost, while matching its stresses and vibration frequencies within about 6%.</p>
+        <figure class="narrow">
+          <div class="plate"><img src="images/tpms-plate.jpg" width="1400" height="930" loading="lazy" alt="Gray 3-D view of a square plate made of five-by-five rounded, repeating lattice cells with holes."></div>
+          <figcaption>A lattice plate built from a smooth, repeating cell shape called a TPMS (triply periodic minimal surface).</figcaption>
+        </figure>
       </article>
     </section>
 
